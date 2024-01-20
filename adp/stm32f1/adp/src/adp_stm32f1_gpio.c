@@ -12,6 +12,8 @@ typedef struct
 	uint8_t state;	// 0-low 1-high
 }GpioCfg_t;
 
+#define DefGpCfg(a)	a##_Cfg,
+
 const GpioCfg_t g_gpioCfg[] = 
 {
 	Gpio_List(DefGpCfg)

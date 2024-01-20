@@ -6,6 +6,7 @@ int32_t AdpConfig(void)
 
     ret |= AdpCoreInit();
     ret |= AdpGpioInit();
+    ret |= AdpIicInit();
 
     return ret;
 }
