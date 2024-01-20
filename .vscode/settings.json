@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "adp_stm32f1_gpio.h": "c",
+        "stm32f10x.h": "c",
+        "adp_config.h": "c",
+        "toolkit.h": "c",
+        "adp_stm32f1_core.h": "c",
+        "io_op.h": "c",
+        "bsp_cfg.h": "c",
+        "daplink_bsp.h": "c",
+        "led_app.h": "c",
+        "soft_config.h": "c",
+        "stm32f10x_adc.h": "c",
+        "stm32f10x_rcc.h": "c"
+    }
+}
