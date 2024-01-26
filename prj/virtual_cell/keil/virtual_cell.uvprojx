@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>HSE_VALUE=8000000, STM32F10X_HD, USE_STDPERIPH_DRIVER,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\adp\stm32f1\adp\inc;..\..\..\adp\stm32f1\std\inc;..\..\..\app;..\..\..\bsp\tool;..\..\..\mid;..\usr;..\..\..\tool;..\..\..\adp\stm32f1\adp;..\..\..\dev\logic</IncludePath>
+              <IncludePath>..\..\..\adp\stm32f1\adp\inc;..\..\..\adp\stm32f1\std\inc;..\..\..\app;..\..\..\bsp\tool;..\..\..\mid;..\usr;..\..\..\tool;..\..\..\adp\stm32f1\adp;..\..\..\dev\logic;..\..\..\dev\adc;..\..\..\comm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,14 +384,14 @@
           <GroupName>app</GroupName>
           <Files>
             <File>
-              <FileName>led_app.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\app\led_app.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\app\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_app.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app\led_app.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -418,6 +418,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\adp\stm32f1\adp\src\adp_stm32f1_iic.c</FilePath>
             </File>
+            <File>
+              <FileName>adp_stm32f1_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\adp\stm32f1\adp\src\adp_stm32f1_uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -435,6 +440,11 @@
               <FileName>task_scheduler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\mid\task_scheduler.c</FilePath>
+            </File>
+            <File>
+              <FileName>debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\mid\debug.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -465,6 +475,11 @@
               <FileName>toolkit.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\tool\toolkit.c</FilePath>
+            </File>
+            <File>
+              <FileName>smallprint.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\tool\smallprint.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -595,6 +610,21 @@
               <FileName>dev_mcp4551_inf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\dev\logic\dev_mcp4551_inf.c</FilePath>
+            </File>
+            <File>
+              <FileName>dev_tpa626_inf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\dev\adc\dev_tpa626_inf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>comm</GroupName>
+          <Files>
+            <File>
+              <FileName>uart_inf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\comm\uart_inf.c</FilePath>
             </File>
           </Files>
         </Group>

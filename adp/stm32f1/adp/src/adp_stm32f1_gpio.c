@@ -4,17 +4,17 @@
 #include "stm32f10x_gpio.h"
 
 /**/
-typedef struct
+struct GpioCfgStruct
 {
 	GPIO_TypeDef *port;
 	uint16_t pin;
 	uint8_t dir;
 	uint8_t state;	// 0-low 1-high
-}GpioCfg_t;
+};
 
 #define DefGpCfg(a)	a##_Cfg,
 
-const GpioCfg_t g_gpioCfg[] = 
+const struct GpioCfgStruct g_gpioCfg[] = 
 {
 	Gpio_List(DefGpCfg)
 };

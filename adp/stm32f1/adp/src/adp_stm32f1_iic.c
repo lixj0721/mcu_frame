@@ -3,17 +3,17 @@
 #include "stm32f10x.h"
 #include "stm32f10x_gpio.h"
 
-typedef struct
+struct IicCfgStruct
 {
 	GPIO_TypeDef *sclport;
 	uint16_t sclpin;
 	GPIO_TypeDef *sdaport;
 	uint16_t sdapin;
-}IicCfg_t;
+};
 
 #define DefIicCfg(a)	a##_Cfg,
 
-const IicCfg_t g_iicCfg[] = 
+const struct IicCfgStruct g_iicCfg[] = 
 {
 	IIC_List(DefIicCfg)
 };
@@ -46,6 +46,7 @@ static void iic_delay()
 
 static void iic_start(uint8_t id)
 {
+    iic_delay();
     SDA_SET(id, 1);
     SCL_SET(id, 1);
     iic_delay();
@@ -105,7 +106,7 @@ uint8_t iic_write_byte(uint8_t id, uint8_t b)
 uint8_t iic_read_byte(uint8_t id, uint8_t last)
 {
     uint8_t r=0;
-    for(int i=7;i>=0;i++)
+    for(int i=7;i>=0;i--)
     {
         SCL_SET(id, 0);
         iic_delay();

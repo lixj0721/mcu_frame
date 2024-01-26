@@ -40,6 +40,7 @@ int32_t TaskScheduleRun(void)
     uint32_t tick = AdpGetSystickCnt();
     int i = 0;
 
+
     for(i=0;i<MAX_TASK_COUNT;i++)
     {
         if(g_taskStruct[i].func == 0)

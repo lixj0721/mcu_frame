@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <stdarg.h>
+
+#define MAX_BUFFER_LENGTH 384
 
 #define ADD_2_MAX(a,max)	do{if((a) < (max))a++;}while(0)
 #define MINUS_2_MIN(a,min)	do{if((a) > (min))a--;}while(0)
@@ -34,6 +37,10 @@ enum{ENDIAN_TYPE_LITTLE=0,ENDIAN_TYPE_BIG};
 #define NULL ((void *)0)
 #endif
 
+#ifndef TRUE
+enum{FALSE=0, TRUE=!FALSE};
+#endif
+
 #define ARRAY_SIZE(A)	(sizeof(A)/sizeof(A[0]))
 #define Ls(i)	(1 << (i))
 #define Rs(i)	(1 >> (i))
@@ -54,6 +61,12 @@ void FifoInf_Reset(FifoInf_Handel fifo);
 void * SysInf_MemAlloc(uint32_t size);
 
 uint16_t Modbus_CRC16(uint8_t *updata,uint32_t len);
+
+int32_t small_vsprintf(char *buf, const char *format, va_list args);
+int32_t small_vsnprintf(char *buf,  uint32_t size,const char *fmt, va_list args);
+
+#define my_vsprintf small_vsprintf
+#define my_vsnprintf small_vsnprintf
 
 #endif  //__TOOLKIT_H__
 

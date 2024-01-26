@@ -11,6 +11,14 @@
         "led_app.h": "c",
         "soft_config.h": "c",
         "stm32f10x_adc.h": "c",
-        "stm32f10x_rcc.h": "c"
+        "stm32f10x_rcc.h": "c",
+        "stm32f10x_gpio.h": "c",
+        "stm32f10x_usart.h": "c",
+        "uart_inf.h": "c",
+        "adp_stm32f1_uart.h": "c",
+        "dev_tpa626_inf.h": "c",
+        "debug.h": "c",
+        "stm32f10x_conf.h": "c",
+        "stm32f10x_bkp.h": "c"
     }
 }
