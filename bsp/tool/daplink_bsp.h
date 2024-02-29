@@ -6,6 +6,13 @@
 **********************************************/
 #define Gpio_List(_)        _(Led1) \
                             _(Led2) \
+                            _(LoadCtrl) \
+                            _(ChgCurrCtrl) \
+                            _(BUTTON) \
+                            _(IQ_TEST_CTRL) \
+                            _(LED_IN) \
+                            _(PWR_CTRL_SW) \
+                            _(PWR_CTRL_EN) \
 
 
 #define DefGpioChEnum(ch)	GpioCh_##ch,
@@ -15,8 +22,15 @@ enum
 	GpioCh_Num
 };
 
-#define Led1_Cfg {GPIOB, GPIO_Pin_10, GPIO_Mode_Out_PP, 1}
-#define Led2_Cfg {GPIOB, GPIO_Pin_11, GPIO_Mode_Out_PP, 1}
+#define Led1_Cfg 		{GPIOE, GPIO_Pin_0, GPIO_Mode_Out_PP, 1}
+#define Led2_Cfg 		{GPIOE, GPIO_Pin_1, GPIO_Mode_Out_PP, 1}
+#define LoadCtrl_Cfg 	{GPIOE, GPIO_Pin_2, GPIO_Mode_Out_PP, 0}
+#define ChgCurrCtrl_Cfg {GPIOE, GPIO_Pin_3, GPIO_Mode_Out_PP, 0}
+#define BUTTON_Cfg 		{GPIOA, GPIO_Pin_4, GPIO_Mode_IN_FLOATING, 0}
+#define IQ_TEST_CTRL_Cfg 		{GPIOB, GPIO_Pin_11, GPIO_Mode_Out_PP, 0}
+#define LED_IN_Cfg 		{GPIOB, GPIO_Pin_12, GPIO_Mode_IN_FLOATING, 0}
+#define PWR_CTRL_SW_Cfg 		{GPIOA, GPIO_Pin_8, GPIO_Mode_Out_PP, 0}
+#define PWR_CTRL_EN_Cfg 		{GPIOA, GPIO_Pin_9, GPIO_Mode_Out_PP, 1}
 
 /**********GPIO接口设备数量配置**********/
 #define MAX_LED_IO_COUNT 2
@@ -25,9 +39,10 @@ enum
 /********************************************
 *****************IIC CONFIG******************
 *********************************************/
-#define IIC_List(_) 	_(IIC1) \
+#define IIC_List(_) 	_(CELL) \
+						_(PWRSRC) \
 
-#define DefIICChEnum(ch) IICCh_##ch,
+#define DefIICChEnum(ch) IIC_CH_##ch,
 
 enum
 {
@@ -35,7 +50,8 @@ enum
 	IICCh_Num
 };
 
-#define IIC1_Cfg {GPIOC, GPIO_Pin_15, GPIOC, GPIO_Pin_14}
+#define IIC_CELL_Cfg 	{GPIOB, GPIO_Pin_11, GPIOB, GPIO_Pin_10}
+#define IIC_PWRSRC_Cfg 	{GPIOB, GPIO_Pin_13, GPIOB, GPIO_Pin_14}
 
 /**********IIC接口设备数量配置**********/
 /*MCP4551设备设定*/
@@ -48,10 +64,12 @@ enum{
 	MCP4551_DEV_Num
 };
 
-#define DEV_MCP4551_ID1_Cfg {IICCh_IIC1, 0x5C}
+#define DEV_MCP4551_ID1_Cfg {IIC_CH_CELL, 0x5C}
 
 /*TPA626设备设定*/
-#define DEV_TPA626_List(_) _(ID1) \
+#define DEV_TPA626_List(_) 	_(IQ) \
+							_(VIRTUAL_CELL)	\
+							_(PWR_SRC)	\
 
 #define DefTPA626Enum(n) DEV_TPA626_##n,
 
@@ -60,7 +78,11 @@ enum{
 	TPA626_DEV_Num
 };
 
-#define DEV_TPA626_ID1_Cfg {IICCh_IIC1, 0x80, {0, TPA626_CFG_CONVERSION_TIME_1085us, \
+#define DEV_TPA626_IQ_Cfg {IIC_CH_CELL, 0x82, {0, TPA626_CFG_CONVERSION_TIME_1085us, \
+							TPA626_CFG_CONVERSION_TIME_1085us, TPA626_CFG_MODE_SHUNT_VBUS_CON}}
+#define DEV_TPA626_VIRTUAL_CELL_Cfg {IIC_CH_CELL, 0x80, {0, TPA626_CFG_CONVERSION_TIME_1085us, \
+							TPA626_CFG_CONVERSION_TIME_1085us, TPA626_CFG_MODE_SHUNT_VBUS_CON}}
+#define DEV_TPA626_PWR_SRC_Cfg {IIC_CH_CELL, 0x80, {0, TPA626_CFG_CONVERSION_TIME_1085us, \
 							TPA626_CFG_CONVERSION_TIME_1085us, TPA626_CFG_MODE_SHUNT_VBUS_CON}}
 
 
@@ -77,12 +99,30 @@ enum
 	UARTCh_Num
 };
 
-#define UART_LINK_Cfg {USART1, GPIOB, GPIO_Pin_7, GPIOB, GPIO_Pin_6, 57600, GPIO_Remap_USART1}
+#define UART_LINK_Cfg {USART2, GPIOA, GPIO_Pin_2, GPIOA, GPIO_Pin_3, 57600, 0}
 
 
 /********************************************
 *****************ADC CONFIG******************
 *********************************************/
-#define ADC_PERIPH(_) _(ADC1)
+#define ADC_ChList(_)   _(IN_5V) \
+						_(BAT_OUT) \
 
+#define ADC_Ch_IN_5V_Cfg   {GPIOC, GPIO_Pin_0, ADC_Channel_10}
+#define ADC_Ch_BAT_OUT_Cfg {GPIOC, GPIO_Pin_1, ADC_Channel_11}
+
+#define ADC_PeriList(_)  _(ADC1) \
+
+#define ADC_PERI_ADC1_Cfg {ADC1, 0, 2}
+
+#define DefADCPeriEnum(a) ADC_PERI_##a,
+
+enum{
+	ADC_PeriList(DefADCPeriEnum)
+	ADC_PERI_Num	
+};
+
+/**********ADC相关接口设备配置**********/
+
+ 
 #endif //__DAPLINK_BSP_H__

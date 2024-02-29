@@ -85,6 +85,7 @@ int32_t DevTpa626ReadShuntVol(uint8_t id, int16_t *shuntVol)
     ret |= TPA_READ_DATA(id, TPA626_REG_SHUNT, (uint8_t *)&data, 2);
     
     *shuntVol = ENDIAN_TYPE_SWITCH_16(DEV_TPA626_ENDBIAN_TYPE, data);/*可能存在数据转换的问题*/
+    *shuntVol = ((int32_t)(*shuntVol) * 5) / 2;/*单位换算，输出单位为1uV*/
     return ret;
 }
 
@@ -93,6 +94,7 @@ int32_t DevTpa626ReadBusVol(uint8_t id, uint16_t *busVol)
     int32_t ret = 0;
     ret |= TPA_READ_DATA(id, TPA626_REG_VBUS, (uint8_t *)busVol, 2);
     *busVol = ENDIAN_TYPE_SWITCH_16(DEV_TPA626_ENDBIAN_TYPE, *busVol);
+    *busVol = (uint32_t)(*busVol) * 10 / 8;/*单位换算，输出单位为1mV*/
     return ret;
 }
 

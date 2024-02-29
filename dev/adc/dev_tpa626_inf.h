@@ -30,7 +30,9 @@ enum{
 };
 
 int32_t DevTpa626Init();
+/**shuntVol 单位为uV*/
 int32_t DevTpa626ReadShuntVol(uint8_t id, int16_t *shuntVol);
+/**busVol 单位为mV*/
 int32_t DevTpa626ReadBusVol(uint8_t id, uint16_t *busVol);
 int32_t DevTpa626ReadCfg(uint8_t id, uint16_t *cfg);
 int32_t DevTpa626ReadAll(uint8_t id, uint16_t *buf, uint8_t num);

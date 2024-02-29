@@ -11,7 +11,7 @@ struct IicCfgStruct
 	uint16_t sdapin;
 };
 
-#define DefIicCfg(a)	a##_Cfg,
+#define DefIicCfg(a)	IIC_##a##_Cfg,
 
 const struct IicCfgStruct g_iicCfg[] = 
 {
