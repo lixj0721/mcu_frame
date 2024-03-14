@@ -80,7 +80,6 @@ int32_t AdpUartInit(void)
     cfg.USART_StopBits = USART_StopBits_1;
     cfg.USART_WordLength = USART_WordLength_8b;
 
-    gpio.GPIO_Mode = GPIO_Mode_AF_PP;
     gpio.GPIO_Speed = GPIO_Speed_50MHz;
 
     for(int i=0;i<UARTCh_Num;i++)
@@ -90,9 +89,11 @@ int32_t AdpUartInit(void)
 
         /*gpio的配置*/
         gpio.GPIO_Pin = g_uartCfg[i].txPin;
+        gpio.GPIO_Mode = GPIO_Mode_AF_PP;
         GPIO_Init(g_uartCfg[i].txPort, &gpio);
 
         gpio.GPIO_Pin = g_uartCfg[i].rxPin;
+        gpio.GPIO_Mode = GPIO_Mode_IN_FLOATING;
         GPIO_Init(g_uartCfg[i].rxPort, &gpio);
 
         if(g_uartCfg[i].remap != 0)
@@ -139,6 +140,16 @@ int32_t AdpUartClrRxFlag(uint8_t obj)
     USART_ClearITPendingBit(g_uartCfg[obj].uart, USART_IT_RXNE);
 
     return 0;
+}
+
+int32_t AdpUartIsTxIntEnable(uint8_t obj)
+{
+    /*这部分可要可不要*/
+    if(obj >= UARTCh_Num)
+    {
+        return -1;
+    }
+    return ((g_uartCfg[obj].uart->CR1 & USART_FLAG_TC)?1:0);
 }
 
 int32_t AdpUartClrTxFlag(uint8_t obj)
@@ -203,6 +214,16 @@ void USART1_IRQHandler(void)
 {
     /*获取序号这部分后续看是否可以有办法优化*/
     int8_t index = GetUartIndex(USART1);
+    if(index != -1 && UartIntProcessFunc != NULL)
+    {
+        UartIntProcessFunc(index);
+    }
+}
+
+void USART2_IRQHandler(void)
+{
+    /*获取序号这部分后续看是否可以有办法优化*/
+    int8_t index = GetUartIndex(USART2);
     if(index != -1 && UartIntProcessFunc != NULL)
     {
         UartIntProcessFunc(index);

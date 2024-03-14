@@ -2,6 +2,7 @@
 #define __TOOLKIT_H__
 
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 
@@ -41,6 +42,13 @@ enum{ENDIAN_TYPE_LITTLE=0,ENDIAN_TYPE_BIG};
 enum{FALSE=0, TRUE=!FALSE};
 #endif
 
+enum{
+    DB_OP_READ,
+    DB_OP_WRITE,
+};
+
+#define FIELD_OFFSET(TYPE, MEMBER) ((uint32_t) &((TYPE *)0)->MEMBER)
+
 #define ARRAY_SIZE(A)	(sizeof(A)/sizeof(A[0]))
 #define Ls(i)	(1 << (i))
 #define Rs(i)	(1 >> (i))
@@ -60,10 +68,13 @@ uint32_t FifoInf_Len(FifoInf_Handel fifo);
 void FifoInf_Reset(FifoInf_Handel fifo);
 void * SysInf_MemAlloc(uint32_t size);
 
-uint16_t Modbus_CRC16(uint8_t *updata,uint32_t len);
+uint16_t CRC16_Clac(uint8_t *updata,uint32_t len);
 
 int32_t small_vsprintf(char *buf, const char *format, va_list args);
 int32_t small_vsnprintf(char *buf,  uint32_t size,const char *fmt, va_list args);
+
+void SysInf_EnterCritical();
+void SysInf_ExitCritical();
 
 #define my_vsprintf small_vsprintf
 #define my_vsnprintf small_vsnprintf

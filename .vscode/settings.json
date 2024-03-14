@@ -19,6 +19,29 @@
         "dev_tpa626_inf.h": "c",
         "debug.h": "c",
         "stm32f10x_conf.h": "c",
-        "stm32f10x_bkp.h": "c"
+        "stm32f10x_bkp.h": "c",
+        "stdint.h": "c",
+        "string.h": "c",
+        "stdarg.h": "c",
+        "compare": "c",
+        "lv_tte_main_bsp.h": "c",
+        "adp_stm32f1_adc.h": "c",
+        "n32g45x.h": "c",
+        "n32g45x_gpio.h": "c"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "adp/stm32f1": true,
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "adp/stm32f1":true,
     }
 }

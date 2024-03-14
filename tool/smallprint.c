@@ -968,13 +968,14 @@ int32_t small_vsprintf(char *buf, const char *fmt, va_list args)
         {
             num = va_arg(args, unsigned long);
         }
-        else if (qualifier == 'h')
-        {
-            if (flags & SIGN)
-                num = va_arg(args, short);
-            else
-                num = va_arg(args, unsigned short);
-        }
+        /*实际不支持short类型的使用，调用时会默认提升到int或者unsigned int，实际使用时返回值转换为short就可以*/
+        // else if (qualifier == 'h')
+        // {
+        //     if (flags & SIGN)
+        //         num = va_arg(args, short);
+        //     else
+        //         num = va_arg(args, unsigned short);
+        // }
         else if (flags & SIGN)
         {
             num = va_arg(args, int);

@@ -1,6 +1,7 @@
 #include "io_op.h"
 #include "bsp_cfg.h"
 #include "task_scheduler.h"
+#include "debug.h"
 
 /*
 输出功能，主要是作为LED输出功能

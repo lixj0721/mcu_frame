@@ -11,8 +11,9 @@ int32_t Transfer_RespData(uint32_t type, uint8_t *buf, uint32_t len)
 {
 #ifdef DEBUG_METHOD_UART
     // void(type);/*暂时不区分*/
-    UartInfSendMsg(DEBUG_PORT_INDEX, buf, len);
+    return UartInfSendMsg(DEBUG_PORT_INDEX, buf, len);
 #endif
+    return 0;
 }
 
 void Debug_Printf(char *fmt, ...)
