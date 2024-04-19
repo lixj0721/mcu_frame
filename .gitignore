@@ -6,3 +6,6 @@ prj/virtual_cell/keil/virtual_cell.uvoptx
 prj/virtual_cell/keil/DebugConfig/
 prj/virtual_cell/keil/Listings/
 prj/virtual_cell/keil/RTE/
+prj/actbal_app/keil/Objects/
+*.yml
+prj/actbal_app/keil/Listings/
