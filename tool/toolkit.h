@@ -73,8 +73,8 @@ uint16_t CRC16_Clac(uint8_t *updata,uint32_t len);
 int32_t small_vsprintf(char *buf, const char *format, va_list args);
 int32_t small_vsnprintf(char *buf,  uint32_t size,const char *fmt, va_list args);
 
-void SysInf_EnterCritical();
-void SysInf_ExitCritical();
+void SysInf_EnterCritical(void);
+void SysInf_ExitCritical(void);
 
 #define my_vsprintf small_vsprintf
 #define my_vsnprintf small_vsnprintf

@@ -338,6 +338,7 @@ static int32_t SingleWriteMsgProcess(struct ModbusObjInf_t * pModbusObj, uint8_t
     struct WriteSingleRegMsg_t *pRecv = (struct WriteSingleRegMsg_t *)pMsg;
     struct WriteSingleRegMsg_t resp;
     int32_t ret = -1;
+    uint16_t sLen = 2;
     // uint16_t len;
 
     if(pModbusObj == NULL)
@@ -350,7 +351,7 @@ static int32_t SingleWriteMsgProcess(struct ModbusObjInf_t * pModbusObj, uint8_t
         return Modbus_SendErrRespMsg(pModbusObj, pModbusObj->init.devAddr, pRecv->header.cmdCode, MODBUS_ERR_CODE_CMD_PROCESS_ERR);
     }
     if(pModbusObj->init.pfWriteCallback != NULL){
-        ret = pModbusObj->init.pfWriteCallback(MODBUS_NET_TO_HOST_16(pRecv->regAddr), (uint8_t *)&(pRecv->regValue), NULL);
+        ret = pModbusObj->init.pfWriteCallback(MODBUS_NET_TO_HOST_16(pRecv->regAddr), (uint8_t *)&(pRecv->regValue), &sLen);
     }
     if(ret == 0){
         memcpy(&resp, pRecv, sizeof(resp));
